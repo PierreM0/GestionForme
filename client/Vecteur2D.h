@@ -13,89 +13,58 @@
 #include <sstream>
 #include <string>
 
-
 using namespace std;
 
-class Vecteur2D
-{
+class Vecteur2D {
 public:
-    double x, y;
-    static double constexpr PI = 3.1415926535;
+  double x, y;
 
-    Vecteur2D(): x(0), y(0) {}
-    Vecteur2D(const double& x, const double& y): x(x), y(y)
-    {
-    }
+  Vecteur2D() : x(0), y(0) {}
+  Vecteur2D(const double &x, const double &y) : x(x), y(y) {}
 
-    static const Vecteur2D creeVecteurUnitaire(const double& alpha)
-    {
-        return Vecteur2D(cos(alpha), sin(alpha));
-    }
+  static const Vecteur2D creeVecteurUnitaire(const double &alpha) {
+    return Vecteur2D(cos(alpha), sin(alpha));
+  }
 
-    explicit operator string() const
-    {
-        ostringstream o;
-        o << "(" << x << ", " << y << ")";
-        return o.str();
-    }
+  explicit operator string() const {
+    ostringstream o;
+    o << "(" << x << ", " << y << ")";
+    return o.str();
+  }
 
-    Vecteur2D operator +(const Vecteur2D& v) const
-    {
-        return Vecteur2D{x + v.x, y + v.y};
-    }
+  Vecteur2D operator+(const Vecteur2D &v) const {
+    return Vecteur2D{x + v.x, y + v.y};
+  }
 
-    const Vecteur2D& operator +=(const Vecteur2D& v)
-    {
-        x += v.x;
-        y += v.y;
-        return *this;
-    }
+  const Vecteur2D &operator+=(const Vecteur2D &v) {
+    x += v.x;
+    y += v.y;
+    return *this;
+  }
 
-    Vecteur2D operator-() const
-    {
-        return Vecteur2D{-x, -y};
-    }
+  Vecteur2D operator-() const { return Vecteur2D{-x, -y}; }
 
-    Vecteur2D operator-(const Vecteur2D& v) const
-    {
-        return Vecteur2D{x - v.x, y - v.y};
-    }
+  Vecteur2D operator-(const Vecteur2D &v) const {
+    return Vecteur2D{x - v.x, y - v.y};
+  }
 
-    Vecteur2D operator*(const double& d) const
-    {
-        return Vecteur2D{d * x, d * y};
-    }
+  Vecteur2D operator*(const double &d) const { return Vecteur2D{d * x, d * y}; }
 
-    double operator*(const Vecteur2D& v) const
-    {
-        return x * v.x + y * v.y;
-    }
+  double operator*(const Vecteur2D &v) const { return x * v.x + y * v.y; }
 
-    double normeCarree() const
-    {
-        return *this * *this;
-    }
+  double normeCarree() const { return *this * *this; }
 
-    double norme() const
-    {
-        return sqrt(normeCarree());
-    }
+  double norme() const { return sqrt(normeCarree()); }
 
-    bool operator ==(const Vecteur2D& v) const
-    {
-        return x == v.x && y == v.y;
-    }
+  bool operator==(const Vecteur2D &v) const { return x == v.x && y == v.y; }
 };
 
-inline ostream& operator <<(ostream& o, const Vecteur2D& v)
-{
-    return o << string(v);
+inline ostream &operator<<(ostream &o, const Vecteur2D &v) {
+  return o << string(v);
 }
 
-inline Vecteur2D operator *(const double& d, const Vecteur2D& v)
-{
-    return v * d;
+inline Vecteur2D operator*(const double &d, const Vecteur2D &v) {
+  return v * d;
 }
 
-
-#endif //VECTEUR2D_H
+#endif // VECTEUR2D_H

@@ -17,6 +17,11 @@ public:
   /// Ajoutes une forme dans la forme composée.
   /// @param forme: la forme a ajouter
   Groupe &add(const unique_ptr<Forme> &forme) {
+    // TODO:
+    // for (const auto &f : formes) {
+    //  if (f->join(forme))
+    //    throw FormeException(FormeException::INTERSECTION_DU_GROUPE);
+    // }
     formes.push_back(forme);
     return *this;
   }
@@ -38,6 +43,15 @@ public:
     for (const auto &forme : formes) {
       forme->rotation(point_invariant, theta);
     }
+  }
+
+  bool operator==(const Groupe &f) {
+    if (this == &f) return true;
+    for (int i = 0; i < formes.size(); ++i)
+    {
+      if (f->formes[i] != formes[i]) return false;
+    }
+    return true;
   }
 };
 
