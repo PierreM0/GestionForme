@@ -20,7 +20,6 @@ TEST(testCercle, testHomotetie)
     Forme* f = new Cercle(Forme::Couleur::RED, Point2D(1, 0), 1);
     const Forme* f2 = new Cercle(Forme::Couleur::RED, Point2D(2, 0), 2);
     f->homotetie(Point2D(0, 0), 2.0);
-    cout << string(*f) << string(*f2);
     ASSERT_EQ(*f, *f2);
 }
 
