@@ -7,7 +7,8 @@ add_executable(gestion-forme main.cpp
         Formes/FormeSimple/Cercle.h
         Formes/FormeSimple/Cercle.h
         Formes/FormeSimple/Triangle.h
-        Formes/FormeSimple/Polygone.h)
+        Formes/FormeSimple/Polygone.h
+        Formes/Groupe.h)
 
 add_executable(tests Tests/main.cpp Tests/testVec2D.cpp Tests/testMat22.cpp Tests/Formes/FormeSimple/testSeg.cpp
         Tests/Formes/FormeSimple/testCercle.cpp
