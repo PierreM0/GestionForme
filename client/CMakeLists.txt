@@ -4,12 +4,14 @@ project(GestionForme)
 include_directories(${GTEST_INCLUDE_DIRS})
 
 add_executable(gestion-forme main.cpp
-        Formes/Groupe.h
         Formes/FormeSimple/Cercle.h
         Formes/FormeSimple/Cercle.h
-        Formes/FormeSimple/Triangle.h)
+        Formes/FormeSimple/Triangle.h
+        Formes/FormeSimple/Polygone.h)
 
 add_executable(tests Tests/main.cpp Tests/testVec2D.cpp Tests/testMat22.cpp Tests/Formes/FormeSimple/testSeg.cpp
         Tests/Formes/FormeSimple/testCercle.cpp
+        Tests/Formes/FormeSimple/testPolygone.cpp
+        Tests/Formes/FormeSimple/testTriangle.cpp
 )
 target_link_libraries(tests gtest)

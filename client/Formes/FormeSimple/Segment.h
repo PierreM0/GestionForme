@@ -10,7 +10,7 @@ class Segment : public Forme {
 public:
   Point2D a, b;
   /// Un segment est définit par 2 points
-  Segment(Couleur color, Point2D a, Point2D b) : Forme(color), a(a), b(b) {}
+  Segment(const Couleur& color, const Point2D &a, const Point2D &b) : Forme(color), a(a), b(b) {}
 
   void translation(const Vecteur2D &translation) override {
     a += translation;
@@ -27,8 +27,8 @@ public:
     const double ctheta = cos(theta);
     const double stheta = sin(theta);
 
-    a = Matrice22(ctheta, -stheta, stheta, ctheta) * a;
-    b = Matrice22(ctheta, -stheta, stheta, ctheta) * b;
+    a = Matrice22(ctheta, -stheta, stheta, ctheta) * a + point_invariant;
+    b = Matrice22(ctheta, -stheta, stheta, ctheta) * b + point_invariant;
   }
 
   bool operator==(const Forme &f) const override {

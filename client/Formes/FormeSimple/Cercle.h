@@ -25,7 +25,7 @@ public:
     const double ctheta = cos(theta);
     const double stheta = sin(theta);
 
-    c = Matrice22(ctheta, -stheta, stheta, ctheta) * c;
+    c = Matrice22(ctheta, -stheta, stheta, ctheta) * c + point_invariant;
   }
 
   bool operator==(const Forme &f) const override {
