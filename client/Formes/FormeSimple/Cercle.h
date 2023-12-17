@@ -3,6 +3,7 @@
 #include "../../Matrice22.h"
 #include "../../Point2D.h"
 #include "../Forme.h"
+#include <cmath>
 
 class Cercle : public Forme {
 public:
@@ -15,13 +16,12 @@ public:
   void translation(const Vecteur2D &translation) override { c += translation; }
 
   void homotetie(const Point2D &point_invariant,
-                         const double &rapport) override {
+                 const double &rapport) override {
     rayon *= rapport;
     c = (c + point_invariant) * rapport;
   }
 
-  void rotation(const Point2D &point_invariant,
-                        const double &theta) override {
+  void rotation(const Point2D &point_invariant, const double &theta) override {
     const double ctheta = cos(theta);
     const double stheta = sin(theta);
 
@@ -40,6 +40,8 @@ public:
     s << "Cercle ( " << c << ";" << rayon << " )";
     return s.str();
   }
+
+  double aire() const override { return M_PIl * rayon * rayon; }
 };
 
 #endif // !CERCLE_H

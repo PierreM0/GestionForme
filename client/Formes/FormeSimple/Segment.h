@@ -10,7 +10,8 @@ class Segment : public Forme {
 public:
   Point2D a, b;
   /// Un segment est définit par 2 points
-  Segment(const Couleur& color, const Point2D &a, const Point2D &b) : Forme(color), a(a), b(b) {}
+  Segment(const Couleur &color, const Point2D &a, const Point2D &b)
+      : Forme(color), a(a), b(b) {}
 
   void translation(const Vecteur2D &translation) override {
     a += translation;
@@ -43,6 +44,8 @@ public:
     s << "Segment [ " << a << ";" << b << " ]";
     return s.str();
   }
+
+  double aire() const override { return 0; }
 };
 
 #endif // !SEGMENT_H

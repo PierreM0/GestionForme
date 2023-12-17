@@ -11,35 +11,32 @@ public:
   vector<Point2D> points;
 
   /// The polygon needs to be at least a triangle
-  explicit Polygone(const Couleur &couleur)
-      : Forme(couleur)
-  {
-  }
+  explicit Polygone(const Couleur &couleur) : Forme(couleur) {}
 
-  Polygone& add(const Point2D & p)
-  {
+  Polygone &add(const Point2D &p) {
     points.push_back(p);
     return *this;
   }
 
-  void translation(const Vecteur2D &translation) override { for (auto &point: points) point += translation; }
+  void translation(const Vecteur2D &translation) override {
+    for (auto &point : points)
+      point += translation;
+  }
 
   void homotetie(const Point2D &point_invariant,
-                         const double &rapport) override {
-    for (auto &point: points)
-    {
+                 const double &rapport) override {
+    for (auto &point : points) {
       point = (point + point_invariant) * rapport;
     }
   }
 
-  void rotation(const Point2D &point_invariant,
-                        const double &theta) override {
+  void rotation(const Point2D &point_invariant, const double &theta) override {
     const double ctheta = cos(theta);
     const double stheta = sin(theta);
 
-    for (auto &point : points)
-    {
-      point  = Matrice22(ctheta, stheta, -stheta, ctheta) * point + point_invariant;
+    for (auto &point : points) {
+      point =
+          Matrice22(ctheta, stheta, -stheta, ctheta) * point + point_invariant;
     }
   }
 
@@ -47,15 +44,15 @@ public:
     const Polygone *p;
     if ((p = dynamic_cast<const Polygone *>(&f)) == nullptr)
       return false;
-    for (auto point: points)
-    {
+    for (auto point : points) {
       bool found = false;
-      for (const auto ppoint: p->points)
+      for (const auto ppoint : p->points)
         if (point == ppoint) {
           found = true;
           break;
         }
-      if (!found) return false;
+      if (!found)
+        return false;
     }
     return true;
   }
@@ -63,13 +60,22 @@ public:
   explicit operator string() const override {
     ostringstream s;
     s << "Polygone [ ";
-    for (const auto p: points)
-    {
+    for (const auto p : points) {
       s << p << "; ";
     }
-    s <<"] ";
+    s << "] ";
 
     return s.str();
+  }
+
+  double aire() const override {
+    double aire = 0.0;
+
+    for (int i = 0; i < points.size() - 1; ++i) {
+      aire +=
+          (points[i + 1].x + points[i].x) * (points[i + 1].y - points[i].y) / 2;
+    }
+    return aire;
   }
 };
 

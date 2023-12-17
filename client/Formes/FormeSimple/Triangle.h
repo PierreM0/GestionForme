@@ -8,20 +8,24 @@ class Triangle : public Forme {
 public:
   Point2D a, b, c;
 
-  Triangle(const Couleur &couleur, const Point2D &a, const Point2D &b, const Point2D &c)
+  Triangle(const Couleur &couleur, const Point2D &a, const Point2D &b,
+           const Point2D &c)
       : Forme(couleur), a(a), b(b), c(c) {}
 
-  void translation(const Vecteur2D &translation) override { a += translation; b += translation; c += translation; }
+  void translation(const Vecteur2D &translation) override {
+    a += translation;
+    b += translation;
+    c += translation;
+  }
 
   void homotetie(const Point2D &point_invariant,
-                         const double &rapport) override {
+                 const double &rapport) override {
     a = (a + point_invariant) * rapport;
     b = (b + point_invariant) * rapport;
     c = (c + point_invariant) * rapport;
   }
 
-  void rotation(const Point2D &point_invariant,
-                        const double &theta) override {
+  void rotation(const Point2D &point_invariant, const double &theta) override {
     const double ctheta = cos(theta);
     const double stheta = sin(theta);
 
@@ -41,6 +45,11 @@ public:
     ostringstream s;
     s << "Triangle [ " << a << ";" << b << ";" << c << " ]";
     return s.str();
+  }
+
+  /** https://fr.wikipedia.org/wiki/Aire_d'un_triangle#%C3%80_partir_des_coordonn%C3%A9es_des_sommets  */
+  double aire() const override {
+    return abs((b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y)) / 2;
   }
 };
 

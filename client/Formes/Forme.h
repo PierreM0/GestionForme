@@ -44,6 +44,8 @@ public:
   virtual void rotation(const Point2D &point_invariant,
                         const double &theta) = 0;
 
+  virtual double aire() const = 0;
+
   virtual bool operator==(const Forme &) const = 0;
   virtual explicit operator string() const = 0;
 };
