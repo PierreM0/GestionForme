@@ -69,8 +69,8 @@ public class JFrameWindow extends JFrame implements Window {
 
     @Override
     public void drawCircle(Vector2D center, double radius, Color color, boolean fill) {
-        Vector2D startPoint = worldToViewport(new Vector2D(center.getX() - radius, center.getY() - radius));
-        Vector2D endPoint = worldToViewport(new Vector2D(center.getX() + radius, center.getY() + radius));
+        Vector2D startPoint = worldToViewport(new Vector2D(center.getX() - radius, center.getY() + radius));
+        Vector2D endPoint = worldToViewport(new Vector2D(center.getX() + radius, center.getY() - radius));
         int length = (int) (endPoint.getX() - startPoint.getX());
         useBufferGraphics(g -> {
             g.setColor(color);
@@ -84,8 +84,16 @@ public class JFrameWindow extends JFrame implements Window {
 
     @Override
     public void clear() {
+        Vector2D[] worldZoneToViewportZone = new Vector2D[] { worldToViewport(worldZone[0]), worldToViewport(worldZone[1]) };
+        int width = (int) Math.abs(worldZoneToViewportZone[1].getX() - worldZoneToViewportZone[0].getX());
+        int height = (int) Math.abs(worldZoneToViewportZone[1].getY() - worldZoneToViewportZone[0].getY());
         useBufferGraphics(g -> {
-
+            g.clearRect(
+                    (int) Math.min(worldZoneToViewportZone[0].getX(), worldZoneToViewportZone[1].getX()),
+                    (int) Math.min(worldZoneToViewportZone[0].getY(), worldZoneToViewportZone[1].getY()),
+                    width,
+                    height
+            );
         });
     }
 
