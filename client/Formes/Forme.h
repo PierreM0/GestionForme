@@ -3,6 +3,7 @@
 
 #include "../Point2D.h"
 #include "../Vecteur2D.h"
+#include "../InterfacesGraphiques/InterfaceGraphique.h"
 
 class Forme {
 public:
@@ -45,6 +46,12 @@ public:
                         const double &theta) = 0;
 
   virtual double aire() const = 0;
+
+  /**
+   * Dessine la forme sur l'interface graphique donnée.
+   * @param ig : l'interface graphique
+   */
+  virtual void dessiner(const InterfaceGraphique &ig) const = 0;
 
   virtual bool operator==(const Forme &) const = 0;
   virtual explicit operator string() const = 0;
