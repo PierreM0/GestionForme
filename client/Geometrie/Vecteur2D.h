@@ -49,6 +49,7 @@ public:
   }
 
   Vecteur2D operator*(const double &d) const { return Vecteur2D{d * x, d * y}; }
+  Vecteur2D operator/(const double &d) const { return *this * (1 / d); }
 
   double operator*(const Vecteur2D &v) const { return x * v.x + y * v.y; }
 
@@ -57,6 +58,8 @@ public:
   double norme() const { return sqrt(normeCarree()); }
 
   bool operator==(const Vecteur2D &v) const { return x == v.x && y == v.y; }
+
+  double determinant(const Vecteur2D &v) const { return x * v.y - y * v.x; }
 };
 
 inline ostream &operator<<(ostream &o, const Vecteur2D &v) {

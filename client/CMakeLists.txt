@@ -10,9 +10,10 @@ add_executable(gestion-forme main.cpp
         Formes/FormeSimple/Polygone.h
         Formes/Groupe.h)
 
-add_executable(tests Tests/main.cpp Tests/testVec2D.cpp Tests/testMat22.cpp Tests/Formes/FormeSimple/testSeg.cpp
+add_executable(tests Tests/main.cpp Tests/Geometrie/testVec2D.cpp Tests/Geometrie/testMat22.cpp Tests/Formes/FormeSimple/testSeg.cpp
         Tests/Formes/FormeSimple/testCercle.cpp
         Tests/Formes/FormeSimple/testPolygone.cpp
         Tests/Formes/FormeSimple/testTriangle.cpp
+        Tests/Geometrie/testGeoPlane.cpp
 )
 target_link_libraries(tests gtest)

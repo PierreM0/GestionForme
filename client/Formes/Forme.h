@@ -1,8 +1,8 @@
 #ifndef FORMES_H
 #define FORMES_H
 
-#include "../Point2D.h"
-#include "../Vecteur2D.h"
+#include "../Geometrie/Point2D.h"
+#include "../Geometrie/Vecteur2D.h"
 
 class Forme {
 public:

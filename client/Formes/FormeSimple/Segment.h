@@ -1,8 +1,8 @@
 #ifndef SEGMENT_H
 #define SEGMENT_H
 
-#include "../../Matrice22.h"
-#include "../../Point2D.h"
+#include "../../Geometrie/Matrice22.h"
+#include "../../Geometrie/Point2D.h"
 #include "../Forme.h"
 #include <cmath>
 

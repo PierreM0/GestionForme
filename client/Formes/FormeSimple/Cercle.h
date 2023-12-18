@@ -1,7 +1,8 @@
 #ifndef CERCLE_H
 #define CERCLE_H
-#include "../../Matrice22.h"
-#include "../../Point2D.h"
+
+#include "../../Geometrie/GeometriePlane.h"
+#include "../../Geometrie/Matrice22.h"
 #include "../Forme.h"
 #include <cmath>
 

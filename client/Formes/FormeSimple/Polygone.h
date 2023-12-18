@@ -2,8 +2,8 @@
 #define POLYGONE_H
 #include <vector>
 
-#include "../../Matrice22.h"
-#include "../../Point2D.h"
+#include "../../Geometrie/Matrice22.h"
+#include "../../Geometrie/Point2D.h"
 #include "../Forme.h"
 
 class Polygone : public Forme {

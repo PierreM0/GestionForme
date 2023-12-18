@@ -1,7 +1,7 @@
 #ifndef TRIANGLE_H
 #define TRIANGLE_H
-#include "../../Matrice22.h"
-#include "../../Point2D.h"
+#include "../../Geometrie/Matrice22.h"
+#include "../../Geometrie/Point2D.h"
 #include "../Forme.h"
 
 class Triangle : public Forme {
