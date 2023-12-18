@@ -77,6 +77,10 @@ public:
     }
     return aire;
   }
+
+  void dessiner(const InterfaceGraphique &ig) const {
+    ig.dessiner(*this);
+  }
 };
 
 #endif // !POLYGONE_H

@@ -8,7 +8,8 @@ add_executable(gestion-forme main.cpp
         Formes/FormeSimple/Cercle.h
         Formes/FormeSimple/Triangle.h
         Formes/FormeSimple/Polygone.h
-        Formes/Groupe.h)
+        Formes/Groupe.h
+        InterfacesGraphiques/InterfaceGraphique.h)
 
 add_executable(tests Tests/main.cpp Tests/Geometrie/testVec2D.cpp Tests/Geometrie/testMat22.cpp Tests/Formes/FormeSimple/testSeg.cpp
         Tests/Formes/FormeSimple/testCercle.cpp
@@ -16,4 +17,3 @@ add_executable(tests Tests/main.cpp Tests/Geometrie/testVec2D.cpp Tests/Geometri
         Tests/Formes/FormeSimple/testTriangle.cpp
         Tests/Geometrie/testGeoPlane.cpp
 )
-target_link_libraries(tests gtest)

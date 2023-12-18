@@ -46,6 +46,10 @@ public:
   }
 
   double aire() const override { return 0; }
+
+  void dessiner(const InterfaceGraphique &ig) const {
+    ig.dessiner(*this);
+  }
 };
 
 #endif // !SEGMENT_H

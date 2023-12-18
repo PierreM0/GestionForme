@@ -43,6 +43,10 @@ public:
   }
 
   double aire() const override { return M_PIl * rayon * rayon; }
+
+  void dessiner(const InterfaceGraphique &ig) const {
+    ig.dessiner(*this);
+  }
 };
 
 #endif // !CERCLE_H
