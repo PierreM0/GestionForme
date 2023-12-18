@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "Forme.h"
+#include "../InterfacesGraphiques/InterfaceGraphique.h"
 
 class Groupe : public Forme {
 
@@ -69,6 +70,12 @@ public:
       aire += f->aire();
     }
     return aire;
+  }
+
+  void dessiner(const InterfaceGraphique &ig) const {
+    for (auto &f : formes) {
+      ig.dessiner(*f);
+    }
   }
 };
 
