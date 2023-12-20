@@ -3,15 +3,16 @@
 
 #include "../../Geometrie/Matrice22.h"
 #include "../../Geometrie/Point2D.h"
-#include "../Forme.h"
+#include "../FormeSegmentee.h"
+
 #include <cmath>
 
-class Segment : public Forme {
+class Segment : public FormeSegmentee {
 public:
   Point2D a, b;
   /// Un segment est définit par 2 points
   Segment(const Couleur &color, const Point2D &a, const Point2D &b)
-      : Forme(color), a(a), b(b) {}
+      : FormeSegmentee(color), a(a), b(b) {}
 
   void translation(const Vecteur2D &translation) override {
     a += translation;
@@ -47,7 +48,13 @@ public:
 
   double aire() const override { return 0; }
 
-  void dessiner(const InterfaceGraphique &ig) const {
+  const vector<Segment> get_all_segments() const override {
+    vector<Segment> res;
+    res.push_back(*this);
+    return res;
+  }
+
+  void dessiner(const InterfaceGraphique &ig) const override {
     ig.dessiner(*this);
   }
 };

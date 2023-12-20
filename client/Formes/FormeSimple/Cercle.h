@@ -44,7 +44,7 @@ public:
 
   double aire() const override { return M_PIl * rayon * rayon; }
 
-  void dessiner(const InterfaceGraphique &ig) const {
+  void dessiner(const InterfaceGraphique &ig) const override {
     ig.dessiner(*this);
   }
 };

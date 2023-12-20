@@ -2,15 +2,16 @@
 #define TRIANGLE_H
 #include "../../Geometrie/Matrice22.h"
 #include "../../Geometrie/Point2D.h"
-#include "../Forme.h"
+#include "../FormeSegmentee.h"
+#include "Segment.h"
 
-class Triangle : public Forme {
+class Triangle : public FormeSegmentee {
 public:
   Point2D a, b, c;
 
   Triangle(const Couleur &couleur, const Point2D &a, const Point2D &b,
            const Point2D &c)
-      : Forme(couleur), a(a), b(b), c(c) {}
+      : FormeSegmentee(couleur), a(a), b(b), c(c) {}
 
   void translation(const Vecteur2D &translation) override {
     a += translation;
@@ -50,6 +51,19 @@ public:
   /** https://fr.wikipedia.org/wiki/Aire_d'un_triangle#%C3%80_partir_des_coordonn%C3%A9es_des_sommets  */
   double aire() const override {
     return abs((b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y)) / 2;
+  }
+
+  const vector<Segment> get_all_segments() const override {
+    vector<Segment> res;
+    res.push_back(Segment(Couleur::BLACK, a, b));
+    res.push_back(Segment(Couleur::BLACK, a, c));
+    res.push_back(Segment(Couleur::BLACK, c, b));
+
+    return res;
+  }
+
+  void dessiner(const InterfaceGraphique &ig) const override {
+    ig.dessiner(*this);
   }
 };
 

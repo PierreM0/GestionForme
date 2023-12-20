@@ -4,14 +4,15 @@
 
 #include "../../Geometrie/Matrice22.h"
 #include "../../Geometrie/Point2D.h"
-#include "../Forme.h"
+#include "../FormeSegmentee.h"
+#include "Segment.h"
 
-class Polygone : public Forme {
+class Polygone : public FormeSegmentee {
 public:
   vector<Point2D> points;
 
   /// The polygon needs to be at least a triangle
-  explicit Polygone(const Couleur &couleur) : Forme(couleur) {}
+  explicit Polygone(const Couleur &couleur) : FormeSegmentee(couleur) {}
 
   Polygone &add(const Point2D &p) {
     points.push_back(p);
@@ -78,7 +79,15 @@ public:
     return aire;
   }
 
-  void dessiner(const InterfaceGraphique &ig) const {
+  const vector<Segment> get_all_segments() const override {
+    vector<Segment> res;
+    for (int i = 0; i < points.size() - 1; ++i) {
+      res.push_back(Segment(Couleur::BLACK, points[i], points[i + i]));
+    }
+    return res;
+  }
+
+  void dessiner(const InterfaceGraphique &ig) const override {
     ig.dessiner(*this);
   }
 };

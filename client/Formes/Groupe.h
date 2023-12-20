@@ -7,8 +7,12 @@
 #include <memory>
 #include <vector>
 
-#include "Forme.h"
 #include "../InterfacesGraphiques/InterfaceGraphique.h"
+#include "ExceptionForme.h"
+#include "Forme.h"
+#include "Intersection/IntersectionCercleCercle.h"
+#include "Intersection/IntersectionSegmentCercle.h"
+#include "Intersection/IntersectionSegmentSegment.h"
 
 class Groupe : public Forme {
 
@@ -18,7 +22,19 @@ class Groupe : public Forme {
 public:
   explicit Groupe(const Couleur &color) : Forme(color) {}
 
-  void add(const unique_ptr<Forme> &f) { formes.push_back(f); }
+  void add(const unique_ptr<Forme> &f) {
+
+    IntersectionFormeCor *inter_forme = new IntersectionSegmentSegment(nullptr);
+    inter_forme = new IntersectionSegmentCercle(inter_forme);
+    inter_forme = new IntersectionCercleCercle(inter_forme);
+
+    for (auto &forme : formes) {
+      if (inter_forme->se_croisent(*forme, *f))
+        throw ExceptionForme(ExceptionForme::AJOUT_IMPOSSIBLE);
+    }
+
+    formes.push_back(f);
+  }
 
   void translation(const Vecteur2D &translation) override {
     for (auto &f : formes) {
@@ -72,9 +88,9 @@ public:
     return aire;
   }
 
-  void dessiner(const InterfaceGraphique &ig) const {
+  void dessiner(const InterfaceGraphique &ig) const override {
     for (auto &f : formes) {
-      ig.dessiner(*f);
+      f->dessiner(ig);
     }
   }
 };
