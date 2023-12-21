@@ -23,8 +23,8 @@
 
 class ClientTcp : public InterfaceGraphique {
   int sock;
+  static ClientTcp *client;
 
-public:
   ClientTcp(const char *addr, short port) {
 
     int sock;
@@ -54,6 +54,14 @@ public:
     cout << "Client connecté!" << endl;
 
     this->sock = sock;
+  }
+
+public:
+  static ClientTcp getClient() {
+    if (client == nullptr) {
+      client = new ClientTcp("127.0.0.1", 12345);
+    }
+    return *client;
   }
 
   void dessiner(const Segment &forme) const override {

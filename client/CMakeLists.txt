@@ -11,7 +11,9 @@ add_executable(gestion-forme main.cpp
         Formes/FormeSimple/Triangle.h
         Formes/FormeSimple/Polygone.h
         Formes/Groupe.h
-        InterfacesGraphiques/InterfaceGraphique.h)
+        InterfacesGraphiques/InterfaceGraphique.h
+        InterfacesGraphiques/ClientTCP/ClientTCP.cpp
+        )
 
 add_executable(tests Tests/main.cpp Tests/Geometrie/testVec2D.cpp Tests/Geometrie/testMat22.cpp Tests/Formes/FormeSimple/testSeg.cpp
         Tests/Formes/FormeSimple/testCercle.cpp

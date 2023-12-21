@@ -6,7 +6,7 @@
 #include <memory>
 
 int main(int argc, char *argv[]) {
-  ClientTcp client = ClientTcp("127.0.0.1", 12345);
+  ClientTcp client = ClientTcp::getClient();
   // client.nettoyer();
   client.definirZoneMonde(Point2D(-20, -20), Point2D(20, 20));
 
