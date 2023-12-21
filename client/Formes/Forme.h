@@ -13,10 +13,14 @@ public:
     const char *content;
 
   public:
+    /// liste des couleurs connues
+    /// -> le serveur choisi une couleur par défaut si inconnue
     static constexpr const char *BLACK = "black", *BLUE = "blue", *RED = "red",
                                 *GREEN = "green", *YELLOW = "yellow",
                                 *CYAN = "cyan";
     Couleur(const char *content) : content(content) {}
+
+    /// retourne la couleur choisie à la création de l'objet
     const char *getContent() const { return content; }
   };
 
@@ -46,6 +50,7 @@ public:
   virtual void rotation(const Point2D &point_invariant,
                         const double &theta) = 0;
 
+  /// retourne l'aire totale de la forme
   virtual double aire() const = 0;
 
   /**
@@ -54,7 +59,10 @@ public:
    */
   virtual void dessiner(const InterfaceGraphique &ig) const = 0;
 
+  /// cacalcule l'égalité entre deux forme sans prendre en compte leur couleur
   virtual bool operator==(const Forme &) const = 0;
+
+  /// transformation de la forme en string.
   virtual explicit operator string() const = 0;
 };
 

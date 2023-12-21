@@ -25,6 +25,9 @@ class ClientTcp : public InterfaceGraphique {
   int sock;
   static ClientTcp *client;
 
+  /**
+   * initialise un socket pour l'addresse addr et le port port
+   * */
   ClientTcp(const char *addr, short port) {
 
     int sock;
@@ -57,6 +60,9 @@ class ClientTcp : public InterfaceGraphique {
   }
 
 public:
+  /**
+   * methode de sigleton pour acceder à l'élément statique
+   */
   static ClientTcp getClient() {
     if (client == nullptr) {
       client = new ClientTcp("127.0.0.1", 12345);
