@@ -4,23 +4,24 @@
 #include "../Geometrie/Point2D.h"
 #include "../Geometrie/Vecteur2D.h"
 #include "../InterfacesGraphiques/InterfaceGraphique.h"
+#include <string>
 
 class Forme {
 public:
   /// Couleurs disponibles
-  enum Couleur {
-    BLACK,
-    BLUE,
-    RED,
-    GREEN,
-    YELLOW,
-    CYAN,
+  class Couleur {
+    const char *content;
+
+  public:
+    static constexpr const char *BLACK = "black", *BLUE = "blue", *RED = "red",
+                                *GREEN = "green", *YELLOW = "yellow",
+                                *CYAN = "cyan";
+    Couleur(const char *content) : content(content) {}
+    const char *getContent() const { return content; }
   };
 
-private:
-  Couleur color;
-
 public:
+  Couleur color;
   /// Une forme est définie par une couleur
   Forme(Couleur color) : color(color){};
 
