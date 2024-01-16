@@ -1,4 +1,5 @@
 #include "Formes/Forme.h"
+#include "Formes/Groupe.h"
 #include "Formes/FormeSimple/Polygone.h"
 #include "Formes/FormeSimple/Segment.h"
 #include "Formes/FormeSimple/Triangle.h"
@@ -6,6 +7,14 @@
 #include <memory>
 
 int main(int argc, char *argv[]) {
+  Groupe g = Groupe(Forme::Couleur::RED);
+  Segment s1 = Segment(Forme::Couleur::RED, Point2D(0, 0), Point2D(-10, 7));
+  std::unique_ptr<Forme> uniqueT(&s1);
+  g.add(uniqueT);
+
+  SauvegardeurTxt sauvegardeurTxt;
+  g.sauvegarder(sauvegardeurTxt, "groupe.txt");
+
   ClientTcp client = ClientTcp::getClient();
   // client.nettoyer();
   client.definirZoneMonde(Point2D(-20, -20), Point2D(20, 20));
@@ -26,6 +35,8 @@ int main(int argc, char *argv[]) {
   p.dessiner(client);
   t.dessiner(client);
   c.dessiner(client);
+
+  client.fermer();
 
   return 0;
 }

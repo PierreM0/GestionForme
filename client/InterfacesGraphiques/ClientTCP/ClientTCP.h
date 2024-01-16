@@ -140,6 +140,10 @@ public:
       throw ClientTCPException("Envoit de la requete impossible");
     }
   };
+
+  void fermer() {
+      close(sock);
+  }
 };
 
 #endif // !CLIENT_TCP_H

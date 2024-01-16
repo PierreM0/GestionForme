@@ -47,6 +47,10 @@ public:
   void dessiner(const InterfaceGraphique &ig) const override {
     ig.dessiner(*this);
   }
+
+    const string &sauvegarder(const SauvegardeurTxt &sauvegardeur, const string &chemin) const override {
+        return sauvegardeur.sauvegarder(*this, chemin);
+    }
 };
 
 #endif // !CERCLE_H

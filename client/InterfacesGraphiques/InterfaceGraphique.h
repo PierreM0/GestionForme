@@ -38,7 +38,7 @@ public:
 
   /**
    * Dessine un triangle.
-   * @param forme : le cercle
+   * @param forme : le triangle
    */
   virtual void dessiner(const Triangle &forme) const = 0;
 
