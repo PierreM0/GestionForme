@@ -4,6 +4,7 @@
 #include "../Geometrie/Point2D.h"
 #include "../Geometrie/Vecteur2D.h"
 #include "../InterfacesGraphiques/InterfaceGraphique.h"
+#include "../Sauvegardeur/SauvegardeurTxt.h"
 #include <string>
 
 class Forme {
@@ -58,6 +59,14 @@ public:
    * @param ig : l'interface graphique
    */
   virtual void dessiner(const InterfaceGraphique &ig) const = 0;
+
+  /**
+   * Sauvegarde la forme dans le fichier dont le chemin est donné.
+   * @param sauvegardeur : l'instance de sauvegarde
+   * @param chemin : le chemin du fichier de sauvegarde, vide si la fonction ne doit pas écrire dans le fichier
+   * @return le contenu du fichier de sauvegarde
+   */
+  virtual const string &sauvegarder(const SauvegardeurTxt &sauvegardeur, const string &chemin) const = 0;
 
   /// cacalcule l'égalité entre deux forme sans prendre en compte leur couleur
   virtual bool operator==(const Forme &) const = 0;

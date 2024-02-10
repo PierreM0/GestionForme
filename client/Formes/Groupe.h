@@ -15,14 +15,13 @@
 #include "Intersection/IntersectionSegmentSegment.h"
 
 class Groupe : public Forme {
-
+public:
   /// Only one forme of each.
   vector<unique_ptr<Forme>> formes;
 
-public:
   explicit Groupe(const Couleur &color) : Forme(color) {}
 
-  void add(const unique_ptr<Forme> &f) {
+  void add(unique_ptr<Forme> &f) {
 
     IntersectionFormeCor *inter_forme = new IntersectionSegmentSegment(nullptr);
     inter_forme = new IntersectionSegmentCercle(inter_forme);
@@ -33,7 +32,7 @@ public:
         throw ExceptionForme(ExceptionForme::AJOUT_IMPOSSIBLE);
     }
 
-    formes.push_back(f);
+    formes.push_back(std::move(f));
   }
 
   void translation(const Vecteur2D &translation) override {
@@ -92,6 +91,10 @@ public:
     for (auto &f : formes) {
       f->dessiner(ig);
     }
+  }
+
+  const string &sauvegarder(const SauvegardeurTxt &sauvegardeur, const string &chemin) const override {
+      return sauvegardeur.sauvegarder(*this, chemin);
   }
 };
 
