@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 3.5)
 project(GestionForme)
 
-# include_directories(${GTEST_INCLUDE_DIRS})
-# SET(CMAKE_EXE_LINKER_FLAGS  "-lgtest")
+include_directories(${GTEST_INCLUDE_DIRS})
+SET(CMAKE_EXE_LINKER_FLAGS  "-lgtest")
 
 add_executable(gestion-forme main.cpp
         Formes/FormeSimple/Cercle.h
