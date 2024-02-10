@@ -24,6 +24,7 @@ void saveIfNeeded(const string &path, const string &content) {
 const string &SauvegardeurTxt::sauvegarder(const Segment &forme, const std::string &chemin) const {
     stringstream ss;
     ss << "segment\n"
+    << forme.color.getContent() << "\n"
     << forme.a.x << " " << forme.a.y << "\n"
     << forme.b.x << " " << forme.b.y << "\n";
     auto *content = new string(ss.str());
@@ -34,6 +35,7 @@ const string &SauvegardeurTxt::sauvegarder(const Segment &forme, const std::stri
 const string &SauvegardeurTxt::sauvegarder(const Polygone &forme, const std::string &chemin) const {
     stringstream ss;
     ss << "polygone\n"
+    << forme.color.getContent() << "\n"
     << forme.points.size() << "\n";
     for (Point2D p : forme.points)
         ss << p.x << " " << p.y << "\n";
@@ -45,6 +47,7 @@ const string &SauvegardeurTxt::sauvegarder(const Polygone &forme, const std::str
 const string &SauvegardeurTxt::sauvegarder(const Triangle &forme, const std::string &chemin) const {
     stringstream ss;
     ss << "triangle\n"
+    << forme.color.getContent() << "\n"
     << forme.a.x << " " << forme.a.y << "\n"
     << forme.b.x << " " << forme.b.y << "\n"
     << forme.c.x << " " << forme.c.y << "\n";
@@ -56,6 +59,7 @@ const string &SauvegardeurTxt::sauvegarder(const Triangle &forme, const std::str
 const string &SauvegardeurTxt::sauvegarder(const Cercle &forme, const std::string &chemin) const {
     stringstream ss;
     ss << "cercle\n"
+    << forme.color.getContent() << "\n"
     << forme.c.x << " " << forme.c.y << "\n"
     << forme.rayon << "\n";
     auto *content = new string(ss.str());
@@ -66,6 +70,7 @@ const string &SauvegardeurTxt::sauvegarder(const Cercle &forme, const std::strin
 const string &SauvegardeurTxt::sauvegarder(const Groupe &groupe, const std::string &chemin) const {
     stringstream ss;
     ss << "groupe\n"
+    << groupe.color.getContent() << "\n"
     << groupe.formes.size() << "\n";
     for (auto &f : groupe.formes) {
         string content = f->sauvegarder(*this, "");
