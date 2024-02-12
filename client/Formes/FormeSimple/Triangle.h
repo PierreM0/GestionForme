@@ -5,10 +5,20 @@
 #include "../FormeSegmentee.h"
 #include "Segment.h"
 
+/**
+ * Classe représentant un triangle.
+ */
 class Triangle : public FormeSegmentee {
 public:
   Point2D a, b, c;
 
+  /**
+   * Crée un nouveau triangle à partir d'une couleur et de 3 points
+   * @param couleur la couleur
+   * @param a le premier point
+   * @param b le deuxième point
+   * @param c le troisième point
+   */
   Triangle(const Couleur &couleur, const Point2D &a, const Point2D &b,
            const Point2D &c)
       : FormeSegmentee(couleur), a(a), b(b), c(c) {}

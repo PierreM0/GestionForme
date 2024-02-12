@@ -6,11 +6,20 @@
 #include "../Forme.h"
 #include <cmath>
 
+/**
+ * Classe représentant un cercle
+ */
 class Cercle : public Forme {
 public:
   Point2D c;
   double rayon;
 
+  /**
+   * Crée un cercle à partir d'une couleur, un centre et un rayon
+   * @param couleur la couleur
+   * @param c le centre
+   * @param rayon le rayon
+   */
   Cercle(const Couleur &couleur, const Point2D &c, const double &rayon)
       : Forme(couleur), c(c), rayon(rayon) {}
 

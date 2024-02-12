@@ -7,10 +7,19 @@
 
 #include <cmath>
 
+/**
+ * Classe représentant un segment
+ */
 class Segment : public FormeSegmentee {
 public:
   Point2D a, b;
-  /// Un segment est définit par 2 points
+
+  /**
+   * Crée un segment à partir d'une couleur et de 2 points
+   * @param color la couleur
+   * @param a le premier point
+   * @param b le deuxième point
+   */
   Segment(const Couleur &color, const Point2D &a, const Point2D &b)
       : FormeSegmentee(color), a(a), b(b) {}
 

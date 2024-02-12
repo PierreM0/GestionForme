@@ -7,10 +7,18 @@
 
 #include "AnalyseurTxt.h"
 
+/**
+ * Représente un maillon d'une chaîne de responsabilité permettant de parser une forme à partir d'un fichier texte
+ */
 class AnalyseurTxtCOR : public AnalyseurTxt {
     AnalyseurTxt *suivant = nullptr;
 
 public:
+
+    /**
+     * Crée un maillon en donnant le maillon suivant
+     * @param suiv le maillon suivant
+     */
     AnalyseurTxtCOR(AnalyseurTxt *suiv) : suivant(suiv) {}
 
     Forme* analyser(ifstream &is) const override {

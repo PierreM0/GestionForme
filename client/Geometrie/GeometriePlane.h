@@ -6,12 +6,18 @@
 #include <cmath>
 #include <utility>
 
+/**
+ * Classe utilitaire réalisant différentes opérations de géometrie plane
+ */
 class GeometriePlane {
 public:
+
   /**
-   * resoud le systeme ax + by = c
-   * retourne le couple (x, y)
-   * ATTENTION DIV PAR ZERO
+   * Résoud le système ax + by = c. <strong>Attention à la div par zéro</strong>.
+   * @param a
+   * @param b
+   * @param c
+   * @return le couple (x, y)
    */
   static const Vecteur2D resolution_systeme_22(const Vecteur2D &a,
                                                const Vecteur2D &b,
@@ -23,10 +29,15 @@ public:
     return r / det;
   }
 
-  /// calcule le point d'intersection I des droite (p0, p1) et (q0, q1)
-  /// on calcule s et t 2 nombres réels tel que vec(p0, I) = s*vec(p0, p1)
-  /// et vec(q0, I) = t*vec(q0, q1)
-  /// retourne (s, t)
+  /**
+   * Calcule le point d'intersection I des droites (p0, p1) et (q0, q1). On calcule s et t deux nombres réels tels que
+   * vec(p0, I) = s * vec(p0, p1) et vec(q0, I) = t * vec(q0, q1).
+   * @param p0 le 1er point définissant la 1ère droite
+   * @param p1 le 2ème point définissant la 1ère droite
+   * @param q0 le 1er point définissant la 2ème droite
+   * @param q1 le 2ème point définissant la 2ème droite
+   * @return le point d'intersection des droites
+   */
   static const Vecteur2D
   inter_droite_droite_inner_coordonees(const Vecteur2D &p0, const Vecteur2D &p1,
                                        const Vecteur2D &q0,
@@ -38,10 +49,15 @@ public:
     return resolution_systeme_22(p0p1, q1q0, p0q0);
   }
 
-  /// calcule le point d'intersection I des droite (p0, p1) et (q0, q1)
-  /// on calcule s et t 2 nombres réels tel que vec(p0, I) = s*vec(p0, p1)
-  /// et vec(q0, I) = t*vec(q0, q1)
-  /// retourne I
+  /**
+   * Calcule le point d'intersection I des droites (p0, p1) et (q0, q1). On calcule s et t deux nombres réels tels que
+   * vec(p0, I) = s * vec(p0, p1) et vec(q0, I) = t * vec(q0, q1).
+   * @param p0 le 1er point définissant la 1ère droite
+   * @param p1 le 2ème point définissant la 1ère droite
+   * @param q0 le 1er point définissant la 2ème droite
+   * @param q1 le 2ème point définissant la 2ème droite
+   * @return le point d'intersection des droites
+   */
   static const Vecteur2D inter_droite_droite(const Vecteur2D &p0,
                                              const Vecteur2D &p1,
                                              const Vecteur2D &q0,
@@ -57,8 +73,15 @@ public:
     return (I1 + I2) / 2;
   }
 
-  /// retourne I le point d'intersection
-  /// retourne si deux segment s'intersectionent.
+  /**
+   * Vérifie si deux segments s'intersectionnent et calcule le point d'intersection.
+   * @param p0 le 1er point du 1er segment
+   * @param p1 le 2ème point du 1er segment
+   * @param q0 le 1er point du 2ème segment
+   * @param q1 le 2ème point du 2ème segment
+   * @param I le point d'intersection calculé par la fonction
+   * @return <i>true</i> s'ils s'intersectionnent, <i>false</i> sinon
+   */
   static bool inter_segment_segment_inner_coordonees(const Vecteur2D &p0,
                                                      const Vecteur2D &p1,
                                                      const Vecteur2D &q0,
@@ -68,7 +91,14 @@ public:
     return 0 <= I.y && I.y <= 1 && 0 <= I.x && I.x <= 1;
   }
 
-  /// retourne si deux segment s'intersectionent.
+  /**
+   * Vérifie si deux segments s'intersectionnent.
+   * @param p0 le 1er point du 1er segment
+   * @param p1 le 2ème point du 1er segment
+   * @param q0 le 1er point du 2ème segment
+   * @param q1 le 2ème point du 2ème segment
+   * @return <i>true</i> s'ils s'intersectionnent, <i>false</i> sinon
+   */
   static bool inter_segment_segment(const Vecteur2D &p0, const Vecteur2D &p1,
                                     const Vecteur2D &q0, const Vecteur2D &q1) {
 
@@ -76,7 +106,14 @@ public:
     return inter_segment_segment_inner_coordonees(p0, p1, q0, q1, I);
   }
 
-  /// prend 3 vecteurs, et retournes les 2 vec
+  /**
+   * Résoud une équation du second degré
+   * @param a
+   * @param b
+   * @param c
+   * @return les 2 solutions de l'équation
+   * @throws ExceptionGeometriePlane si delta < 0
+   */
   static const pair<double, double>
   resoudre_equation_second_degre(const double &a, const double &b,
                                  const double &c) {
@@ -90,8 +127,15 @@ public:
     return pair(x1, x2);
   }
 
-  /// retournes le couple de coordonnées d'intersection. throw une erreur, si
-  /// delta < 0.
+  /**
+   * Calcule les coordonnées d'intersection entre un cercle et une droite.
+   * @param c le centre du cercle
+   * @param rayon le rayon du cercle
+   * @param p0 le 1er point définissant la droite
+   * @param p1 le 2ème point définissant la droite
+   * @return les coordonnées d'intersection
+   * @throws ExceptionGeometriePlane si delta < 0
+   */
   static pair<Vecteur2D, Vecteur2D> inter_cercle_droite(const Vecteur2D &c,
                                                         const double &rayon,
                                                         const Vecteur2D &p0,
@@ -109,6 +153,14 @@ public:
     return r;
   }
 
+  /**
+   * Vérifie si un cercle et un segment d'intersectionnent.
+   * @param c le centre du cercle
+   * @param rayon le rayon du cercle
+   * @param p0 le 1er point définissant le segment
+   * @param p1 le 2ème point définissant le segment
+   * @return <i>true</i> s'ils s'intersectionnent, <i>false</i> sinon
+   */
   static bool inter_cercle_segment(const Vecteur2D &c, const double &rayon,
                                    const Vecteur2D &p0, const Vecteur2D &p1) {
 
@@ -137,6 +189,14 @@ public:
     }
   }
 
+  /**
+   * Vérifie si deux cercles d'intersectionnent.
+   * @param c1 le centre du 1er cercle
+   * @param r1 le rayon du 1er cercle
+   * @param c2 le centre du 2ème cercle
+   * @param r2 le rayon du 2ème cercle
+   * @return <i>true</i> s'ils s'intersectionnent, <i>false</i> sinon
+   */
   static bool inter_cercle_cercle(const Vecteur2D &c1, const double &r1,
                                   const Vecteur2D &c2, const double &r2) {
 

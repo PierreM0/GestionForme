@@ -14,6 +14,9 @@
 #include "Intersection/IntersectionSegmentCercle.h"
 #include "Intersection/IntersectionSegmentSegment.h"
 
+/**
+ * Classe représentant un groupe de formes
+ */
 class Groupe : public Forme {
 public:
   /// Only one forme of each.
@@ -21,6 +24,10 @@ public:
 
   explicit Groupe(const Couleur &color) : Forme(color) {}
 
+  /**
+   * Ajoute une forme au groupe
+   * @param f la forme
+   */
   void add(unique_ptr<Forme> &f) {
 
     IntersectionFormeCor *inter_forme = new IntersectionSegmentSegment(nullptr);
@@ -40,12 +47,13 @@ public:
       f->translation(translation);
     }
   }
-  void homotetie(const Point2D &point_invariant,
-                 const double &rapport) override {
+
+  void homotetie(const Point2D &point_invariant, const double &rapport) override {
     for (auto &f : formes) {
       f->homotetie(point_invariant, rapport);
     }
   }
+
   void rotation(const Point2D &point_invariant, const double &theta) override {
     for (auto &f : formes) {
       f->rotation(point_invariant, theta);

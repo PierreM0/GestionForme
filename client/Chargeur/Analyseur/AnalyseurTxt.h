@@ -8,8 +8,17 @@
 #include <fstream>
 #include "../../Formes/Forme.h"
 
+/**
+ * Classe permettant le parsing d'une forme à partir d'un fichier texte
+ */
 class AnalyseurTxt {
 public:
+
+    /**
+     * Parse une forme à partir du flux d'entrée du fichier texte
+     * @param is le flux d'entrée
+     * @return la forme
+     */
     virtual Forme* analyser(ifstream &is) const = 0;
 };
 
