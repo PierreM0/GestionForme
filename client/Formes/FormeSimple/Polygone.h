@@ -7,13 +7,24 @@
 #include "../FormeSegmentee.h"
 #include "Segment.h"
 
+/**
+ * Classe représentant un polygone
+ */
 class Polygone : public FormeSegmentee {
 public:
   vector<Point2D> points;
 
-  /// The polygon needs to be at least a triangle
+  /**
+   * Crée un plygone. Doit au moins avoir 3 points.
+   * @param couleur
+   */
   explicit Polygone(const Couleur &couleur) : FormeSegmentee(couleur) {}
 
+  /**
+   * Ajoute un point au polygone
+   * @param p le point
+   * @return ce polygone pour un appel chaîné
+   */
   Polygone &add(const Point2D &p) {
     points.push_back(p);
     return *this;

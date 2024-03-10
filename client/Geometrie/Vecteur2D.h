@@ -5,23 +5,36 @@
 #ifndef VECTEUR2D_H
 #define VECTEUR2D_H
 
-//
-// Created by pierrem on 06/12/23.
-//
-
 #include <cmath>
 #include <sstream>
 #include <string>
 
 using namespace std;
 
+/**
+ * Classe représentant un vecteur à 2 dimensions
+ */
 class Vecteur2D {
 public:
   double x, y;
 
+  /**
+   * Crée un vecteur par défaut (x = 0, y = 0)
+   */
   Vecteur2D() : x(0), y(0) {}
+
+  /**
+   * Crée un vecteur à partir de ses deux composantes
+   * @param x
+   * @param y
+   */
   Vecteur2D(const double &x, const double &y) : x(x), y(y) {}
 
+  /**
+   * Crée un vecteur unitaire à partir d'un angle
+   * @param alpha l'angle en radians
+   * @return le vecteur unitaire
+   */
   static const Vecteur2D creeVecteurUnitaire(const double &alpha) {
     return Vecteur2D(cos(alpha), sin(alpha));
   }
@@ -53,12 +66,25 @@ public:
 
   double operator*(const Vecteur2D &v) const { return x * v.x + y * v.y; }
 
+  /**
+   * Calcule la norme au carré du vecteur
+   * @return la norme au carré
+   */
   double normeCarree() const { return *this * *this; }
 
+  /**
+   * Calcule la norme du vecteur
+   * @return la norme
+   */
   double norme() const { return sqrt(normeCarree()); }
 
   bool operator==(const Vecteur2D &v) const { return x == v.x && y == v.y; }
 
+  /**
+   * Calcule le déterminant entre ce vecteur et un autre vecteur donné
+   * @param v l'autre vecteur
+   * @return le déterminant
+   */
   double determinant(const Vecteur2D &v) const { return x * v.y - y * v.x; }
 };
 

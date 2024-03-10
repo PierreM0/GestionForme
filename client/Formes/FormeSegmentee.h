@@ -5,14 +5,18 @@
 #include <vector>
 class Segment;
 
+/**
+ * Classe représentant une forme formée de plusieurs segments
+ */
 class FormeSegmentee : public Forme {
 public:
+
+  FormeSegmentee(const Couleur &c) : Forme(c) {}
+
   /**
-   * @brief retourne tous les segments de la forme. sous forme d'un vecteur de
-   * segments.
+   * @return les segments de la forme
    */
   virtual const vector<Segment> get_all_segments() const = 0;
-  FormeSegmentee(const Couleur &c) : Forme(c) {}
 };
 
 #endif // !FORME_SEGMENTEE_H

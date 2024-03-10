@@ -7,51 +7,74 @@
 #include "../Sauvegardeur/SauvegardeurTxt.h"
 #include <string>
 
+/**
+ * Classe représentant une forme quelconque
+ */
 class Forme {
 public:
-  /// Couleurs disponibles
+
+  /**
+   * Contient les couleurs affichable
+   */
   class Couleur {
     const char *content;
 
   public:
-    /// liste des couleurs connues
-    /// -> le serveur choisi une couleur par défaut si inconnue
+    /**
+     * La liste des couleurs connues
+     */
     static constexpr const char *BLACK = "black", *BLUE = "blue", *RED = "red",
                                 *GREEN = "green", *YELLOW = "yellow",
                                 *CYAN = "cyan";
+
+    /**
+     * Crée une couleur à partir de sa représentation en string (ex: red, black, etc.)
+     * @param content la représentation en string de la couleur, doit exister dans la liste des couleurs connues
+     */
     Couleur(const char *content) : content(content) {}
 
-    /// retourne la couleur choisie à la création de l'objet
+    /**
+     * @return la représentation en string de la couleur
+     */
     const char *getContent() const { return content; }
   };
 
 public:
   Couleur color;
-  /// Une forme est définie par une couleur
+
+  /**
+   * Crée une forme à partir d'une couleur
+   * @param color la couleur
+   */
   Forme(Couleur color) : color(color){};
 
   virtual ~Forme() = default;
 
-  /// La translation est une operation de décalage dans le plan. Elle s'applique
-  /// sur l'objet implicite.
-  /// @param translation Le vecteur de translation
+  /**
+   * La translation est une operation de décalage dans le plan. Elle s'applique sur l'objet implicite.
+   * @param translation Le vecteur de translation
+   */
   virtual void translation(const Vecteur2D &translation) = 0;
 
-  /// L'homotetie est une operation de zoom. Elle s'applique sur l'objet
-  /// implicite.
-  /// @param point_invariant le point sur lequel va se baser l'homotetie
-  /// @param rapport le rapport d'homothetie, il va définir le zoom ou le
-  /// dézoom.
+  /**
+   * L'homotetie est une operation de zoom. Elle s'applique sur l'objet implicite.
+   * @param point_invariant le point sur lequel va se baser l'homotetie
+   * @param rapport le rapport d'homothetie, il va définir le zoom ou le dézoom
+   */
   virtual void homotetie(const Point2D &point_invariant,
                          const double &rapport) = 0;
 
-  /// La rotation s'applique sur l'objet implicite.
-  /// @param point_invariant le point sur lequel va se baser la rotation
-  /// @param point_invariant l'angle sur lequel va se baser la rotation
+  /**
+   * La rotation s'applique sur l'objet implicite.
+   * @param point_invariant le point sur lequel va se baser la rotation
+   * @param theta l'angle sur lequel va se baser la rotation
+   */
   virtual void rotation(const Point2D &point_invariant,
                         const double &theta) = 0;
 
-  /// retourne l'aire totale de la forme
+  /**
+   * @return l'aire totale de la forme
+   */
   virtual double aire() const = 0;
 
   /**
@@ -68,10 +91,11 @@ public:
    */
   virtual const string &sauvegarder(const SauvegardeurTxt &sauvegardeur, const string &chemin) const = 0;
 
-  /// cacalcule l'égalité entre deux forme sans prendre en compte leur couleur
+  /**
+   * calcule l'égalité entre deux forme sans prendre en compte leur couleur
+   */
   virtual bool operator==(const Forme &) const = 0;
 
-  /// transformation de la forme en string.
   virtual explicit operator string() const = 0;
 };
 

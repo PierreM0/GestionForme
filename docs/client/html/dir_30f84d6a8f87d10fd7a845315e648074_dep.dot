@@ -1,0 +1,14 @@
+digraph "Tests/Formes/FormeSimple"
+{
+ // LATEX_PDF_SIZE
+  bgcolor="transparent";
+  edge [fontname=Helvetica,fontsize=10,labelfontname=Helvetica,labelfontsize=10];
+  node [fontname=Helvetica,fontsize=10,shape=box,height=0.2,width=0.4];
+  compound=true
+  subgraph clusterdir_4c069dff89ea167fc6534cc72e0ca0c2 {
+    graph [ bgcolor="#edf0f7", pencolor="grey50", label="Formes", fontname=Helvetica,fontsize=10 style="filled,dashed", URL="dir_4c069dff89ea167fc6534cc72e0ca0c2.html",tooltip=""]
+  dir_30f84d6a8f87d10fd7a845315e648074 [label="FormeSimple", fillcolor="#edf0f7", color="grey25", style="filled,bold", URL="dir_30f84d6a8f87d10fd7a845315e648074.html",tooltip=""];
+  }
+  dir_29b50a3b0d83dc131baccc5fbf70a8b6 [label="Formes", fillcolor="#edf0f7", color="red", style="filled", URL="dir_29b50a3b0d83dc131baccc5fbf70a8b6.html",tooltip=""];
+  dir_30f84d6a8f87d10fd7a845315e648074->dir_29b50a3b0d83dc131baccc5fbf70a8b6 [headlabel="5", labeldistance=1.5 headhref="dir_000016_000013.html" href="dir_000016_000013.html" color="steelblue1" fontcolor="steelblue1"];
+}
