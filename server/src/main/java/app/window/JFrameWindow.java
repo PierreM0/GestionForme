@@ -64,7 +64,9 @@ public class JFrameWindow extends JFrame implements Window {
             } else {
                 g.drawPolygon(xPoints, yPoints, points.length);
             }
+            g.drawLine(0, 0, 5, 5);
         });
+
     }
 
     @Override
@@ -88,12 +90,12 @@ public class JFrameWindow extends JFrame implements Window {
         int width = (int) Math.abs(worldZoneToViewportZone[1].getX() - worldZoneToViewportZone[0].getX());
         int height = (int) Math.abs(worldZoneToViewportZone[1].getY() - worldZoneToViewportZone[0].getY());
         useBufferGraphics(g -> {
-            g.clearRect(
-                    (int) Math.min(worldZoneToViewportZone[0].getX(), worldZoneToViewportZone[1].getX()),
-                    (int) Math.min(worldZoneToViewportZone[0].getY(), worldZoneToViewportZone[1].getY()),
-                    width,
-                    height
-            );
+//            g.clearRect(
+//                    (int) Math.min(worldZoneToViewportZone[0].getX(), worldZoneToViewportZone[1].getX()),
+//                    (int) Math.min(worldZoneToViewportZone[0].getY(), worldZoneToViewportZone[1].getY()),
+//                    width,
+//                    height
+//            );
         });
     }
 
@@ -101,7 +103,6 @@ public class JFrameWindow extends JFrame implements Window {
     public void updateWorldZone(Vector2D[] zone) {
         this.worldZone = zone;
         updateScale();
-        // TODO Redraw shapes to match the new world zone
     }
 
     /**

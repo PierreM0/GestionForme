@@ -91,6 +91,10 @@ public:
    */
   virtual const string &sauvegarder(const SauvegardeurTxt &sauvegardeur, const string &chemin) const = 0;
 
+  virtual void setColor(Couleur c) {
+    this->color = c;
+  }
+
   /**
    * calcule l'égalité entre deux forme sans prendre en compte leur couleur
    */

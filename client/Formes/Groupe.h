@@ -34,10 +34,12 @@ public:
     inter_forme = new IntersectionSegmentCercle(inter_forme);
     inter_forme = new IntersectionCercleCercle(inter_forme);
 
-    for (auto &forme : formes) {
+    /*for (auto &forme : formes) {
       if (inter_forme->se_croisent(*forme, *f))
         throw ExceptionForme(ExceptionForme::AJOUT_IMPOSSIBLE);
-    }
+    }*/
+
+    f->color = this->color;
 
     formes.push_back(std::move(f));
   }
@@ -98,6 +100,13 @@ public:
   void dessiner(const InterfaceGraphique &ig) const override {
     for (auto &f : formes) {
       f->dessiner(ig);
+    }
+  }
+
+  void setColor(Couleur c) {
+    this->color = c;
+    for (auto &f : formes) {
+      f->color = c;
     }
   }
 
